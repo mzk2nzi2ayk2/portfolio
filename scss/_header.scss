@@ -1,0 +1,162 @@
+@use 'mixin' as m;
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eae6e8;
+    border-bottom: 1px solid rgba(64, 48, 70, 0.1);
+    padding: 20px 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    @include m.sp {
+        padding: 12px 20px;
+    }
+    .header-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        margin: 0 auto;
+        .site-title {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin: 0;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: nowrap;
+                .title {
+                    color: #403046;
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    @include m.sp {
+                        font-size: 1rem;
+                    }
+                }
+                .subtitle {
+                    color: #4b454b;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.05em;
+                    border-left: 1px solid #4b454b;
+                    padding-left: 8px;
+                    white-space: nowrap;
+                    @include m.sp {
+                        font-size: 0.65rem;
+                    }
+                }
+            }
+            .badge {
+                color: #4b454b;
+                font-size: 0.65rem;
+                letter-spacing: 0.05em;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                @include m.sp {
+                    display: none;
+                }
+            }
+            .badge::before {
+                content: "";
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                background-color: #403046;
+                border-radius: 50%;
+            }
+        }
+        #nav {
+            width: 100%;
+            height: 100vh;
+            color: #403046;
+            background-color: #f5eff5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            .menu {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                padding: 0;
+                margin: 0;
+                li {
+                    a {
+                        color: #4b454b;
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        letter-spacing: 0.08em;
+                        transition: color 0.3s ease;
+                    }
+                }
+            }
+        }
+    }
+    .hamburger {
+        display: block;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        position: relative;
+        z-index: 30;
+        cursor: pointer;
+        transition: 0.3s;
+        span {
+            width: 24px;
+            height: 2px;
+            background-color: #403046;
+            position: absolute;
+            left: 8px;
+            transition: 0.3s ease-in-out;
+        }
+        span:nth-child(1) {
+            top: 13px;
+        }
+        span:nth-child(2) {
+            top: 19px;
+        }
+        span:nth-child(3) {
+            top: 25px;
+        }
+    }
+    .hamburger:hover {
+        opacity: 0.7;
+    }
+}
+header.open {
+    #nav {
+        opacity: 1;
+        visibility: visible;
+    }
+    .hamburger {
+        span:nth-child(1) {
+            top: 19px;
+            left: 7px;
+            transform: rotate(-45deg);
+        }
+        span:nth-child(2),
+        span:nth-child(3) {
+            top: 19px;
+            left: 7px;
+            transform: rotate(45deg);
+        }
+    }
+}
